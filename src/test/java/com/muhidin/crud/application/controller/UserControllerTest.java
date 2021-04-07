@@ -2,11 +2,9 @@ package com.muhidin.crud.application.controller;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.muhidin.crud.application.entity.User;
-import com.muhidin.crud.application.repository.UserRepository;
 import com.muhidin.crud.application.services.UserServices;
 import org.junit.Test;
 import org.junit.runner.RunWith;
-import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
@@ -15,7 +13,6 @@ import org.springframework.http.MediaType;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
 
-import static org.junit.jupiter.api.Assertions.*;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
@@ -27,13 +24,11 @@ public class UserControllerTest {
     @MockBean
     UserServices userServices;
 
-    @MockBean
-    UserRepository userRepository;
-
     ObjectMapper objectMapper = new ObjectMapper();
 
     @Autowired
     private MockMvc mockMvc;
+
     @Autowired
     UserController userController;
 
@@ -44,6 +39,7 @@ public class UserControllerTest {
         request.setEmail("TEST EMAIL");
 
         userServices.newUser(request);
+
 
         User user = new User();
         user.setName(request.getName());
@@ -59,4 +55,6 @@ public class UserControllerTest {
 
 
     }
+
+
 }
