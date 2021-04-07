@@ -61,19 +61,15 @@ public class UserControllerTest {
 
     }
 
-    @Mock
-    UserRepository userRepository;
-
 
     @Test
     public void it_should_return_a_saved_user() {
         request.setName("Muhidin");
         request.setEmail("Muhidin@gmail.com");
 
-        Mockito.when(userRepository.save(Mockito.any(User.class))).thenReturn(new User());
+//        Mockito.when(userRepository.save(Mockito.any(User.class))).thenReturn(request);
+        Mockito.when(userServices.newUser(Mockito.any(User.class))).thenReturn(request);
         User created = userServices.newUser(request);
-        System.out.println(created);
-
         assertThat(request.getName()).isSameAs(created.getName());
     }
 
