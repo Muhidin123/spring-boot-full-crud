@@ -2,7 +2,7 @@ package com.muhidin.crud.application.services;
 
 import com.muhidin.crud.application.entity.User;
 import com.muhidin.crud.application.repository.UserRepository;
-import org.springframework.beans.factory.annotation.Autowired;
+//import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -11,13 +11,15 @@ import java.util.Optional;
 @Service
 public class UserServices implements InterfaceUserServices {
 
-    @Autowired
-    private UserRepository userRepository;
+//    @Autowired
+    private final UserRepository userRepository;
+    public UserServices(UserRepository userRepository){
+        this.userRepository = userRepository;
+    }
 
     @Override
     public User newUser(User user) {
-        userRepository.save(user);
-        return user;
+     return userRepository.save(user);
     }
 
     @Override
@@ -31,7 +33,7 @@ public class UserServices implements InterfaceUserServices {
     }
 
     @Override
-    public User updateOrReplaceUser( User newUser,Long id) {
+    public User updateOrReplaceUser( User newUser ,Long id) {
         return userRepository.findById(id)
                 .map(user -> {
                     user.setName(newUser.getName());

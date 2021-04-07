@@ -3,6 +3,7 @@ package com.muhidin.crud.application.entity;
 //import org.springframework.data.annotation.CreatedDate;
 //import org.springframework.data.annotation.LastModifiedDate;
 
+import net.minidev.json.annotate.JsonIgnore;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 
@@ -33,10 +34,12 @@ public class User {
 
     @CreationTimestamp
     @Temporal(TemporalType.DATE)
+    @JsonIgnore
     private Date createdAt;
 
     @UpdateTimestamp
     @Temporal(TemporalType.TIMESTAMP)
+    @JsonIgnore
     private Date updatedAt;
 
     @PrePersist
